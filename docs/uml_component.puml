@@ -1,0 +1,24 @@
+@startuml
+skinparam componentStyle rectangle
+
+component "Browser UI" as UI
+component "PHP Front Controller" as Front
+component "Router + MVC Controllers" as MVC
+component "Service Layer" as SVC
+component "Repository Layer" as REP
+database "SQLite" as DB
+component "File Storage" as FS
+component "AI Provider" as AI
+component "Export Engine (Text)" as EXP
+
+UI --> Front
+Front --> MVC
+MVC --> SVC
+MVC --> REP
+REP --> DB
+MVC --> FS
+SVC --> FS
+SVC --> AI
+MVC --> EXP
+
+@enduml

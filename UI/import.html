@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Import - QuizAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#00618f",
+                        "on-tertiary-fixed-variant": "#645300",
+                        "on-secondary-fixed": "#003855",
+                        "on-error-container": "#510017",
+                        "surface": "#fcf4ff",
+                        "primary-fixed-dim": "#9780ff",
+                        "on-tertiary": "#fff2ce",
+                        "tertiary-fixed-dim": "#edc600",
+                        "on-surface": "#36274e",
+                        "background": "#fcf4ff",
+                        "on-error": "#ffefef",
+                        "on-surface-variant": "#64547e",
+                        "surface-dim": "#e1cbff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#a491ff",
+                        "on-tertiary-fixed": "#433700",
+                        "on-secondary-container": "#004c71",
+                        "error-dim": "#a70138",
+                        "surface-container-low": "#f7edff",
+                        "primary-fixed": "#a491ff",
+                        "on-secondary": "#eaf4ff",
+                        "primary": "#5e2eef",
+                        "on-background": "#36274e",
+                        "tertiary": "#6d5a00",
+                        "inverse-on-surface": "#a795c3",
+                        "error-container": "#f74b6d",
+                        "secondary-dim": "#00557d",
+                        "surface-container-highest": "#e7d5ff",
+                        "surface-container-high": "#ecdcff",
+                        "secondary-fixed": "#a7d7ff",
+                        "secondary-container": "#a7d7ff",
+                        "secondary-fixed-dim": "#86cbff",
+                        "tertiary-container": "#fdd400",
+                        "tertiary-fixed": "#fdd400",
+                        "surface-container": "#f0e3ff",
+                        "surface-bright": "#fcf4ff",
+                        "on-primary-fixed": "#000000",
+                        "error": "#b41340",
+                        "on-tertiary-container": "#594a00",
+                        "on-primary-fixed-variant": "#2d008e",
+                        "on-primary": "#f6f0ff",
+                        "surface-tint": "#5e2eef",
+                        "inverse-surface": "#14052b",
+                        "inverse-primary": "#947dff",
+                        "on-primary-container": "#240075",
+                        "tertiary-dim": "#5f4e00",
+                        "on-secondary-fixed-variant": "#00567f",
+                        "surface-variant": "#e7d5ff",
+                        "outline-variant": "#b8a5d4",
+                        "outline": "#806f9a",
+                        "primary-dim": "#5216e3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#f7edff] dark:bg-[#251f33] flex flex-col p-4 gap-2 z-50">
+<div class="px-4 py-6">
+<h1 class="text-lg font-black text-[#36274e] dark:text-[#fcf4ff] font-headline">The Academy</h1>
+<p class="text-xs font-semibold text-primary opacity-80 uppercase tracking-widest mt-1">Premium Tier</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">quiz</span>
+                Quizzes
+            </a>
+<!-- Active Tab: Imports -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#a491ff] text-[#36274e] rounded-xl shadow-sm font-manrope text-[0.875rem] font-semibold scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+                Imports
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">folder_special</span>
+                Collections
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                AI Lab
+            </a>
+</nav>
+<div class="mt-auto pt-6 flex flex-col gap-1 border-t border-outline-variant/20">
+<button class="w-full mb-4 bg-gradient-to-br from-primary to-primary-dim text-on-primary py-3 px-4 rounded-xl font-bold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                Create New Quiz
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#36274e] dark:text-[#fcf4ff] opacity-60 hover:opacity-100 hover:bg-[#ecdcff] dark:hover:bg-[#362d4d] rounded-xl transition-colors font-manrope text-[0.875rem] font-semibold" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen p-8 lg:p-12">
+<header class="mb-12 flex justify-between items-end">
+<div class="max-w-2xl">
+<h2 class="text-[3.5rem] font-headline font-bold leading-tight tracking-tight text-on-surface">Import Knowledge</h2>
+<p class="text-on-surface-variant text-lg mt-2 leading-relaxed">Turn your documents and research into interactive quizzes in seconds. Our AI extracts core concepts with academic precision.</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-2 rounded-full">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a smiling young woman with dark hair in a bright modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8dsF1YSuxtrm81yVtmNlclzvRbWZnuYgm_InJ-Pi6kjhIYAnn18UmMQTWwYA6MYrguRfRgKQFMU-OfaCFWfdltDEnZU3i1j9n1VCi0X6usmuU1QWAqypuYkOmhqicSLaWPpbLzB_MjsaGLwMY7bpRflJPwyD_Bwt39N6J-U9-9S_fGVvxCxFIT0xz3tSQMlN7J3qc-JFy3qHavi9ci33sOr6zPzMQ0ZcCNZV4fotmB6vFer5cjUvBMvvUA-AFC9-XyBw5la7xmLU"/>
+</div>
+</div>
+</header>
+<!-- Import Workspace -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<!-- Drag & Drop Zone (Bento Primary) -->
+<div class="xl:col-span-8 group relative overflow-hidden bg-surface-container-lowest rounded-xl p-1 shadow-[0_20px_40px_rgba(54,39,78,0.06)] border border-outline-variant/10">
+<div class="bg-surface p-12 border-2 border-dashed border-primary/20 rounded-[2.5rem] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary-container/5 min-h-[500px]">
+<div class="mb-8 relative">
+<div class="w-24 h-24 bg-primary-container rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<div class="absolute -bottom-2 -right-2 w-8 h-8 bg-tertiary-container rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-sm text-on-tertiary-container font-bold">bolt</span>
+</div>
+</div>
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Drop your documents here</h3>
+<p class="text-on-surface-variant max-w-sm mb-8">Click to browse or drag your research papers, notes, or lecture slides to begin processing.</p>
+<div class="flex gap-4 mb-10">
+<!-- File Type Indicators -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-secondary border-b-4 border-secondary shadow-sm">
+<span class="font-bold text-xs uppercase">PDF</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary border-b-4 border-primary shadow-sm">
+<span class="font-bold text-xs uppercase">DOCX</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-on-surface-variant border-b-4 border-outline shadow-sm">
+<span class="font-bold text-xs uppercase">TXT</span>
+</div>
+</div>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-dim text-on-primary px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 hover:scale-105 transition-all flex items-center gap-3">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        Process with AI
+                    </button>
+<p class="text-xs font-label uppercase tracking-widest text-outline mt-8">Max file size: 25MB • Up to 50 files at once</p>
+</div>
+</div>
+<!-- Alternative Methods (Bento Secondary) -->
+<div class="xl:col-span-4 flex flex-col gap-6">
+<!-- Import URL -->
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">link</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Import from URL</h4>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Paste a link to an article, Wikipedia page, or online document.</p>
+<div class="flex flex-col gap-3">
+<input class="w-full bg-surface-container-lowest border-0 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-secondary placeholder:text-outline-variant" placeholder="https://example.com/article" type="url"/>
+<button class="text-secondary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all self-end px-2">
+                            Fetch content
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Paste Text -->
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 hover:shadow-md transition-shadow flex-1">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-surface-container-highest text-on-surface-variant rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">notes</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Paste Text</h4>
+</div>
+<textarea class="w-full h-40 bg-surface-container-lowest border-0 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary placeholder:text-outline-variant resize-none mb-4" placeholder="Paste your study notes or raw text here..."></textarea>
+<div class="flex justify-between items-center">
+<span class="text-xs text-outline-variant font-medium">0 words</span>
+<button class="bg-surface-container-highest text-on-surface-variant px-5 py-2 rounded-full text-sm font-bold hover:bg-outline-variant/20 transition-colors">
+                            Analyze Text
+                        </button>
+</div>
+</div>
+<!-- Recent Activity/Tip -->
+<div class="relative overflow-hidden bg-primary-container/10 p-8 rounded-xl border border-primary-container/20">
+<div class="relative z-10">
+<div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-tighter mb-2">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+                            Pro Tip
+                        </div>
+<p class="text-on-primary-container text-sm leading-relaxed font-medium">
+                            Import high-quality sources for the best quiz results. PDF textbooks and academic papers yield the most comprehensive question sets.
+                        </p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px] rotate-12">psychology_alt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Progress (Hidden by default, shown during upload) -->
+<div class="fixed bottom-12 right-12 glass-panel bg-surface-container-lowest/70 border border-outline-variant/20 p-6 rounded-xl shadow-[0_20px_40px_rgba(54,39,78,0.1)] w-80 translate-y-24 pointer-events-none opacity-0">
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm font-bold text-on-surface">Uploading Document...</span>
+<span class="text-xs text-secondary font-black">64%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="h-full w-[64%] bg-gradient-to-r from-secondary to-secondary-fixed-dim rounded-full"></div>
+<div class="absolute left-[64%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 bg-tertiary-container rounded-full border-2 border-surface shadow-sm"></div>
+</div>
+</div>
+</main>
+<!-- Visual Overlap Decorator -->
+<div class="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
+<div class="fixed bottom-0 left-64 -z-10 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4"></div>
+</body></html>

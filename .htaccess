@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /PRX/
+
+    # Serve public assets under /PRX/assets/*
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L,NC]
+
+    # Front controller
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+<IfModule mod_php.c>
+    php_value max_input_vars 20000
+    php_value post_max_size 64M
+</IfModule>
+
+<IfModule mod_php8.c>
+    php_value max_input_vars 20000
+    php_value post_max_size 64M
+</IfModule>
+
+DirectoryIndex index.php
+Options -Indexes

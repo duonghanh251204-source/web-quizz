@@ -1,0 +1,37 @@
+@startuml
+actor Admin
+participant "DocumentController" as DC
+participant "ExtractorService" as EX
+participant "QuizController" as QC
+participant "QuizGenerationService" as QG
+participant "AIProvider" as AI
+participant "QuestionController" as QTC
+participant "Repository" as R
+participant "Export" as EXP
+database "SQLite" as DB
+
+Admin -> DC : Upload document
+DC -> EX : extract(file)
+EX --> DC : extracted_content
+DC -> R : createDocument(...)
+R -> DB : INSERT documents
+
+Admin -> QC : Create quiz from document
+QC -> QG : generateFromDocument(...)
+QG -> AI : generate(prompt)
+AI --> QG : questions json
+QG --> QC : normalized questions
+QC -> R : createQuiz(...)
+R -> DB : INSERT quizzes + questions
+
+Admin -> QTC : CRUD questions
+QTC -> R : create/update/deleteQuestion(...)
+R -> DB : write questions
+
+Admin -> QC : Export exam
+QC -> R : findQuestionsByQuizId(...)
+R -> DB : SELECT questions
+QC -> EXP : build text file
+EXP --> Admin : download .txt
+
+@enduml

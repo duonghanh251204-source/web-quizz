@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuizStudio - Quiz Created Successfully</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#00557d",
+                    "surface-dim": "#e1cbff",
+                    "on-secondary-container": "#004c71",
+                    "on-primary": "#f6f0ff",
+                    "on-secondary-fixed-variant": "#00567f",
+                    "on-secondary": "#eaf4ff",
+                    "surface-container-low": "#f7edff",
+                    "background": "#fcf4ff",
+                    "primary-fixed-dim": "#9780ff",
+                    "on-tertiary-fixed-variant": "#645300",
+                    "on-error": "#ffefef",
+                    "secondary": "#00618f",
+                    "primary": "#5e2eef",
+                    "on-primary-fixed-variant": "#2d008e",
+                    "inverse-primary": "#947dff",
+                    "surface-bright": "#fcf4ff",
+                    "on-tertiary-fixed": "#433700",
+                    "on-tertiary-container": "#594a00",
+                    "on-tertiary": "#fff2ce",
+                    "inverse-surface": "#14052b",
+                    "on-surface-variant": "#64547e",
+                    "on-background": "#36274e",
+                    "on-secondary-fixed": "#003855",
+                    "secondary-fixed": "#a7d7ff",
+                    "tertiary-dim": "#5f4e00",
+                    "on-surface": "#36274e",
+                    "on-primary-fixed": "#000000",
+                    "on-primary-container": "#240075",
+                    "inverse-on-surface": "#a795c3",
+                    "outline-variant": "#b8a5d4",
+                    "error-dim": "#a70138",
+                    "on-error-container": "#510017",
+                    "primary-dim": "#5216e3",
+                    "outline": "#806f9a",
+                    "tertiary-fixed": "#fdd400",
+                    "surface-tint": "#5e2eef",
+                    "tertiary-fixed-dim": "#edc600",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e7d5ff",
+                    "surface-container-highest": "#e7d5ff",
+                    "tertiary": "#6d5a00",
+                    "surface-container-high": "#ecdcff",
+                    "primary-fixed": "#a491ff",
+                    "error": "#b41340",
+                    "secondary-fixed-dim": "#86cbff",
+                    "surface": "#fcf4ff",
+                    "primary-container": "#a491ff",
+                    "error-container": "#f74b6d",
+                    "secondary-container": "#a7d7ff",
+                    "surface-container": "#f0e3ff",
+                    "tertiary-container": "#fdd400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #5e2eef 0%, #5216e3 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(54, 39, 78, 0.06), 0 10px 15px rgba(54, 39, 78, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#f7edff] dark:bg-slate-900 flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold tracking-tighter text-[#5e2eef] dark:text-[#a491ff]">Kinetic Academy</h1>
+<p class="font-['Plus_Jakarta_Sans'] font-medium text-xs tracking-tight text-[#36274e] dark:text-slate-300 opacity-60">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1 pr-4">
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 bg-[#a491ff]/20 text-[#5216e3] font-bold rounded-r-full font-['Plus_Jakarta_Sans'] text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span>My Quizzes</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span>Question Bank</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mb-8">
+<button class="w-full editorial-gradient text-white py-4 px-6 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+                Create New Quiz
+            </button>
+</div>
+<div class="mt-auto space-y-1 pr-4">
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-[#36274e] dark:text-slate-300 opacity-70 font-['Plus_Jakarta_Sans'] font-medium text-sm tracking-tight hover:bg-[#ecdcff] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-[#fcf4ff]/70 dark:bg-slate-950/70 backdrop-blur-xl flex items-center justify-between px-8 z-40 shadow-sm">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-[#36274e] dark:text-white">QuizStudio</span>
+<div class="hidden md:flex items-center gap-6 font-['Manrope'] font-semibold text-sm">
+<a class="text-[#36274e] dark:text-slate-400 hover:text-[#5216e3] transition-all" href="#">Drafts</a>
+<a class="text-[#36274e] dark:text-slate-400 hover:text-[#5216e3] transition-all" href="#">Shared</a>
+<a class="text-[#36274e] dark:text-slate-400 hover:text-[#5216e3] transition-all" href="#">Archived</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4">
+<button class="p-2 text-[#36274e] dark:text-slate-300 hover:text-[#5e2eef] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-[#36274e] dark:text-slate-300 hover:text-[#5e2eef] transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<button class="px-5 py-2 font-['Manrope'] font-semibold text-sm text-[#36274e] dark:text-slate-300 hover:text-[#5216e3] transition-all">Preview</button>
+<button class="editorial-gradient text-white px-6 py-2 rounded-full font-['Manrope'] font-semibold text-sm hover:scale-[1.02] active:scale-95 transition-all">Publish</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-12 pb-20 min-h-screen">
+<!-- Hero Section with Success Modal / Card Overlay -->
+<div class="relative mb-20">
+<div class="w-full h-48 bg-surface-container-low rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"></div>
+<div class="absolute -right-10 -top-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute left-1/4 -bottom-10 w-48 h-48 bg-tertiary/10 rounded-full blur-2xl"></div>
+</div>
+<!-- Central Success Card -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 w-full max-w-2xl">
+<div class="glass-panel custom-shadow rounded-xl p-8 text-center border border-white/40">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-4xl text-on-primary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-headline text-3xl font-extrabold text-on-background mb-2">Quiz Created Successfully!</h2>
+<p class="font-body text-on-surface-variant mb-8">Your quiz "The Advanced Quantum Mechanics Challenge" is now live and ready to be shared with your students.</p>
+<div class="bg-surface-container-high p-4 rounded-lg mb-8 flex items-center justify-between gap-4">
+<code class="text-primary font-bold text-lg select-all">cerebro.spark/quiz/play/abc-123</code>
+<button class="flex items-center gap-2 editorial-gradient text-white px-6 py-3 rounded-full font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                            Copy Link
+                        </button>
+</div>
+<div class="flex items-center justify-center gap-6">
+<span class="font-label text-xs tracking-widest text-on-surface-variant uppercase">Share via</span>
+<div class="flex gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-background">share</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-background">mail</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-background">groups</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-48">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-2xl font-bold text-on-background">Recent Quizzes</h3>
+<button class="text-primary font-bold text-sm hover:underline">View All Quizzes</button>
+</div>
+<!-- Bento Grid for Quizzes -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Quiz Card 1 -->
+<div class="bg-surface-container-lowest custom-shadow rounded-lg p-6 hover:translate-y-[-4px] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase tracking-widest">Active</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="font-headline text-lg font-bold mb-2">Introduction to Neuroplasticity</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6">Foundational concepts of brain rewiring and neural growth.</p>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-surface-variant">
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Plays</span>
+<span class="font-headline text-lg font-extrabold">1,248</span>
+</div>
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Avg Score</span>
+<span class="font-headline text-lg font-extrabold text-secondary">74%</span>
+</div>
+</div>
+</div>
+<!-- Quiz Card 2 -->
+<div class="bg-surface-container-lowest custom-shadow rounded-lg p-6 hover:translate-y-[-4px] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded-full uppercase tracking-widest">Archived</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="font-headline text-lg font-bold mb-2">Organic Chemistry Midterm</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6">Carbon-based structures and reaction mechanisms for Fall Semester.</p>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-surface-variant">
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Plays</span>
+<span class="font-headline text-lg font-extrabold">856</span>
+</div>
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Avg Score</span>
+<span class="font-headline text-lg font-extrabold text-secondary">62%</span>
+</div>
+</div>
+</div>
+<!-- Quiz Card 3 (Featured Style) -->
+<div class="bg-surface-container-lowest custom-shadow rounded-lg p-6 relative overflow-hidden group hover:translate-y-[-4px] transition-transform duration-300">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/20 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase tracking-widest">Active</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h4 class="font-headline text-lg font-bold mb-2">Modern Architectural Styles</h4>
+<p class="font-body text-sm text-on-surface-variant mb-6">Exploring Bauhaus to Deconstructivism through visual ID.</p>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-surface-variant">
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Plays</span>
+<span class="font-headline text-lg font-extrabold">412</span>
+</div>
+<div>
+<span class="block font-label text-[10px] text-on-surface-variant opacity-60 uppercase">Avg Score</span>
+<span class="font-headline text-lg font-extrabold text-secondary">88%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dynamic Statistics Section (Asymmetric) -->
+<div class="mt-16 flex flex-col lg:flex-row gap-8">
+<div class="flex-1 bg-surface-container-low rounded-xl p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline text-xl font-bold mb-4">Global Engagement</h3>
+<div class="flex items-end gap-2 mb-6">
+<span class="text-4xl font-extrabold text-primary">8.4k</span>
+<span class="text-secondary font-bold text-sm mb-1">+12% this week</span>
+</div>
+<div class="flex gap-2 items-end h-24">
+<div class="flex-1 bg-primary/20 h-[40%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[45%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-[85%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[70%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[90%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[65%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[120px]">monitoring</span>
+</div>
+</div>
+<div class="w-full lg:w-80 bg-on-background text-on-primary rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-xl font-bold mb-2">Pro Tip</h3>
+<p class="font-body text-sm opacity-80 mb-6">Shared quizzes with a custom thumbnail get 45% more engagement from students.</p>
+</div>
+<button class="w-full py-3 bg-primary-container text-on-primary-container rounded-full font-bold text-sm hover:bg-white transition-colors">
+                    Upgrade Account
+                </button>
+</div>
+</div>
+</main>
+<!-- Floating Spark Decoration -->
+<div class="fixed bottom-10 right-10 w-16 h-16 bg-tertiary-container rounded-full flex items-center justify-center shadow-xl shadow-tertiary/20 cursor-pointer hover:scale-110 transition-transform duration-300 z-50">
+<span class="material-symbols-outlined text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</body></html>

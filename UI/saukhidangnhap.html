@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Kinetic Academy | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#a7d7ff",
+                        "on-secondary-fixed-variant": "#00567f",
+                        "outline-variant": "#b8a5d4",
+                        "primary-fixed-dim": "#9780ff",
+                        "inverse-surface": "#14052b",
+                        "secondary-container": "#a7d7ff",
+                        "background": "#fcf4ff",
+                        "tertiary-fixed": "#fdd400",
+                        "on-tertiary-fixed": "#433700",
+                        "outline": "#806f9a",
+                        "error-container": "#f74b6d",
+                        "tertiary-fixed-dim": "#edc600",
+                        "secondary-fixed-dim": "#86cbff",
+                        "on-error": "#ffefef",
+                        "primary-fixed": "#a491ff",
+                        "surface-bright": "#fcf4ff",
+                        "surface-dim": "#e1cbff",
+                        "on-tertiary": "#fff2ce",
+                        "on-secondary": "#eaf4ff",
+                        "surface-container-low": "#f7edff",
+                        "surface-container": "#f0e3ff",
+                        "on-secondary-fixed": "#003855",
+                        "inverse-primary": "#947dff",
+                        "tertiary-dim": "#5f4e00",
+                        "secondary": "#00618f",
+                        "on-primary-container": "#240075",
+                        "on-secondary-container": "#004c71",
+                        "on-primary-fixed-variant": "#2d008e",
+                        "inverse-on-surface": "#a795c3",
+                        "error-dim": "#a70138",
+                        "error": "#b41340",
+                        "on-tertiary-fixed-variant": "#645300",
+                        "tertiary": "#6d5a00",
+                        "surface-container-high": "#ecdcff",
+                        "surface-tint": "#5e2eef",
+                        "surface-variant": "#e7d5ff",
+                        "secondary-dim": "#00557d",
+                        "on-surface": "#36274e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#fdd400",
+                        "on-tertiary-container": "#594a00",
+                        "primary-dim": "#5216e3",
+                        "primary-container": "#a491ff",
+                        "surface-container-highest": "#e7d5ff",
+                        "on-error-container": "#510017",
+                        "surface": "#fcf4ff",
+                        "primary": "#5e2eef",
+                        "on-primary": "#f6f0ff",
+                        "on-primary-fixed": "#000000",
+                        "on-surface-variant": "#64547e",
+                        "on-background": "#36274e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-glow {
+            box-shadow: 10px 0 20px -10px rgba(94, 46, 239, 0.3);
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: #36274e;
+            background-color: #fcf4ff;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden">
+<!-- Predicted SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-purple-50/70 dark:bg-slate-950/70 backdrop-blur-xl flex flex-col h-full py-8 px-4 shadow-xl dark:shadow-2xl shadow-purple-900/5 z-50">
+<div class="mb-10 px-4">
+<h1 class="text-2xl font-bold tracking-tight text-purple-700 dark:text-purple-300">Editorial Energy</h1>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest text-outline opacity-70">The Kinetic Academy</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Upload/AI - Active State for Dashboard Context -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-purple-700 dark:text-purple-300 font-bold border-r-4 border-purple-600 active-nav-glow bg-purple-100/50" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Upload/AI</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Preview/Edit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Create Quiz</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Share Link</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="play_lesson">play_lesson</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Take Quiz</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Results</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-plus-jakarta-sans text-sm font-medium">Leaderboard</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-4 flex items-center gap-3 border-t border-purple-100 dark:border-slate-800 pt-6">
+<div class="h-10 w-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User profile" class="h-full w-full object-cover" data-alt="portrait of a young creative professional woman with a friendly expression and stylish glasses in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP4_H708S3rAuc48aD_yp6uYGlFaA00ea6IAbvih7cDIyNJFzrGWq4MYnjvcDDuxHgyupB2pf1Z4ITHzAd2xENMngk7XqPywcRJ1WRE4zLFY68sgUIv2aYnmYP0WlCovirMQbgCJM67PiosAsGJmTxsj1bvI_s7ps3jvwHtfUe5jRY7xCNc6LXoo9gwA_RaC0u8Wq9ysGpVy137YZQYu37Yjn0SlHBr2_tMJRzuw-uDi9C1XcH3n8zjYFyzj8CijEbrgSDyQS8tMg"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Alex Rivera</p>
+<p class="text-xs text-outline truncate">Pro Plan</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors">settings</span>
+</div>
+</aside>
+<!-- Predicted TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex justify-between items-center px-8 w-full no-border tonal-shift">
+<div class="flex items-center gap-4">
+<span class="text-xl font-extrabold text-purple-700 dark:text-purple-400">The Kinetic Academy</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full bg-surface-container-low border-none text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search quizzes..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-slate-500">
+<button class="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cubic-bezier(0.34, 1.56, 0.64, 1)">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cubic-bezier(0.34, 1.56, 0.64, 1)">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pl-64 pt-16 min-h-screen relative overflow-y-auto">
+<!-- Abstract Background Element -->
+<div class="absolute top-0 right-0 w-2/3 h-2/3 -z-10 opacity-20 pointer-events-none">
+<img alt="background abstract" class="w-full h-full object-cover rounded-bl-full" data-alt="ethereal abstract gradient flowing from deep violet to soft lavender with organic silk-like light patterns and soft grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxpmnSlh24v_rwEHI2Mv46Tamc4deF371G7hFAPV9F_YNLsamkF3U33Iga-LWYGFnMWi6IBPM10RT88tBvQdKgW1ZUSEq8sWvWAwCYkQO1IePLGlV3g-JsAPo3Dx3uj9YqOngCiDiJGA-FvU7lgBG3KFlSk4P-F18-8k3u5i6Scu8ho7_2zfqCeosXSa-jutM8hwzrX2HHtUkUgL5fE-CFZziENGx_eXBR4wd-BTKqkyq17RJ0CVPrz4fvY1r9qB1_qMoqbWjd19E"/>
+</div>
+<div class="max-w-6xl mx-auto px-12 py-20">
+<!-- Greeting Section -->
+<section class="mb-20">
+<p class="text-primary font-label tracking-[0.2em] mb-4 uppercase text-xs font-bold">DASHBOARD OVERVIEW</p>
+<h2 class="text-6xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tight mb-6">
+                    Good morning, <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Explorer!</span>
+</h2>
+<p class="text-xl text-on-surface-variant max-w-2xl font-body leading-relaxed">
+                    The academy is buzzing with new insights today. Ready to turn your knowledge into energetic discovery?
+                </p>
+</section>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Quick Stats Overview -->
+<div class="md:col-span-8 bg-surface-container-low rounded-xl p-10 flex flex-col justify-between relative overflow-hidden group">
+<!-- Subtle background glow -->
+<div class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-12">
+<h3 class="text-2xl font-headline font-bold">Quick Performance</h3>
+<span class="text-xs font-label bg-white px-3 py-1 rounded-full shadow-sm">LAST 30 DAYS</span>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-3 gap-12">
+<div>
+<p class="text-sm font-label text-outline mb-2">TOTAL QUIZZES</p>
+<p class="text-4xl font-headline font-extrabold text-primary">24</p>
+</div>
+<div>
+<p class="text-sm font-label text-outline mb-2">AVG. ACCURACY</p>
+<p class="text-4xl font-headline font-extrabold text-secondary">92<span class="text-xl">%</span></p>
+</div>
+<div class="hidden lg:block">
+<p class="text-sm font-label text-outline mb-2">GENERATE POWER</p>
+<p class="text-4xl font-headline font-extrabold text-tertiary-dim">High</p>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-outline-variant/20 flex gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-dim text-white px-8 py-3 rounded-full font-bold text-sm hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                            Create New Quiz
+                        </button>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 rounded-full font-bold text-sm border border-outline-variant/30 hover:bg-surface-variant/20 transition-colors">
+                            View All Results
+                        </button>
+</div>
+</div>
+<!-- Daily Pro-Tip -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(54,39,78,0.06),0_10px_15px_rgba(54,39,78,0.04)] relative">
+<div class="h-12 w-12 bg-tertiary-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<h4 class="text-lg font-headline font-bold mb-3">Daily Pro-tip</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+                            "When using AI to generate questions, try uploading specialized PDFs. The narrower the source, the deeper the learning energy."
+                        </p>
+<a class="text-primary text-xs font-bold font-label flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                            LEARN MORE <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+<!-- Visual Accent Card -->
+<div class="bg-primary-container/20 rounded-xl p-8 flex flex-col items-center text-center">
+<div class="w-16 h-1 rounded-full bg-primary mb-6 opacity-30"></div>
+<p class="text-sm italic font-body text-on-primary-container/80">
+                            "The beautiful thing about learning is that nobody can take it away from you."
+                        </p>
+<p class="mt-4 text-[10px] font-label font-bold text-primary">B.B. KING</p>
+</div>
+</div>
+</div>
+<!-- Footer-style minimalist help -->
+<footer class="mt-32 pt-8 border-t border-outline-variant/10 flex justify-between items-center text-outline text-xs">
+<p>© 2024 The Kinetic Academy. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

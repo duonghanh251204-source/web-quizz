@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+actor Guest
+actor User
+actor Admin
+
+rectangle "PRX AI Quiz Platform" {
+  usecase "Login/Register" as UC1
+  usecase "Upload Document" as UC2
+  usecase "Generate AI Questions" as UC3
+  usecase "CRUD Questions" as UC4
+  usecase "Create Quiz" as UC5
+  usecase "Export Exam (Text)" as UC6
+  usecase "Take Quiz" as UC7
+  usecase "View Results" as UC8
+}
+
+Guest --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+User --> UC7
+User --> UC8
+
+UC5 --> UC3 : <<include>>
+
+@enduml

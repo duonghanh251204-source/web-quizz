@@ -1,0 +1,66 @@
+# Environment files
+.env
+.env.local
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+storage/database.sqlite
+
+# Storage directories
+storage/logs/*.log
+storage/sessions/*
+storage/uploads/*
+storage/*
+
+# PHP dependencies
+vendor/
+composer.phar
+composer.lock
+
+# Python dependencies & cache
+venv/
+CHATBOT-AI/venv/
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Backup files
+backup/
+project_backups/
+*.zip
+*.tar
+*.rar
+*.7z
+
+# Log files
+*.log
+logs/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build artifacts
+*.cache
+build/
+dist/

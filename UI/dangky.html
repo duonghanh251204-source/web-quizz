@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#f0e3ff",
+                    "on-primary-fixed": "#000000",
+                    "outline-variant": "#b8a5d4",
+                    "surface-bright": "#fcf4ff",
+                    "on-primary-fixed-variant": "#2d008e",
+                    "on-error-container": "#510017",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#433700",
+                    "on-surface-variant": "#64547e",
+                    "on-tertiary": "#fff2ce",
+                    "surface-dim": "#e1cbff",
+                    "primary-fixed": "#a491ff",
+                    "on-tertiary-container": "#594a00",
+                    "on-surface": "#36274e",
+                    "surface-container-highest": "#e7d5ff",
+                    "on-primary-container": "#240075",
+                    "tertiary": "#6d5a00",
+                    "primary": "#5e2eef",
+                    "secondary-fixed": "#a7d7ff",
+                    "surface": "#fcf4ff",
+                    "error-dim": "#a70138",
+                    "background": "#fcf4ff",
+                    "tertiary-container": "#fdd400",
+                    "secondary-container": "#a7d7ff",
+                    "on-secondary": "#eaf4ff",
+                    "primary-dim": "#5216e3",
+                    "tertiary-dim": "#5f4e00",
+                    "error": "#b41340",
+                    "secondary-fixed-dim": "#86cbff",
+                    "tertiary-fixed-dim": "#edc600",
+                    "secondary": "#00618f",
+                    "outline": "#806f9a",
+                    "on-error": "#ffefef",
+                    "error-container": "#f74b6d",
+                    "on-secondary-fixed": "#003855",
+                    "primary-container": "#a491ff",
+                    "on-background": "#36274e",
+                    "primary-fixed-dim": "#9780ff",
+                    "surface-tint": "#5e2eef",
+                    "surface-container-high": "#ecdcff",
+                    "secondary-dim": "#00557d",
+                    "on-secondary-container": "#004c71",
+                    "on-primary": "#f6f0ff",
+                    "tertiary-fixed": "#fdd400",
+                    "on-tertiary-fixed-variant": "#645300",
+                    "surface-variant": "#e7d5ff",
+                    "surface-container-low": "#f7edff",
+                    "inverse-surface": "#14052b",
+                    "inverse-primary": "#947dff",
+                    "on-secondary-fixed-variant": "#00567f",
+                    "inverse-on-surface": "#a795c3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .main-gradient {
+            background: linear-gradient(135deg, #5e2eef 0%, #5216e3 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Suppressed as per Shell Visibility Rule for Transactional Pages, but kept as reference for Identity) -->
+<header class="fixed top-0 w-full z-50 bg-[#fcf4ff]/70 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#5e2eef] tracking-tighter font-headline">Kinetic Academy</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-headline font-bold text-[#36274e] opacity-70 hover:opacity-100 transition-all" href="#">Explore</a>
+<a class="font-headline font-bold text-[#5e2eef] border-b-2 border-[#5e2eef]" href="#">Log In</a>
+</div>
+</div>
+</header>
+<main class="min-h-screen flex items-center justify-center p-6 pt-24">
+<!-- Layout Wrapper -->
+<div class="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
+<!-- Branding & Illustration Side -->
+<div class="hidden lg:flex flex-col space-y-8 pr-12">
+<div class="space-y-4">
+<span class="bg-surface-container-highest text-primary font-label text-[0.75rem] px-4 py-1.5 rounded-full tracking-[0.05em] uppercase font-bold">Welcome Back</span>
+<h1 class="font-headline text-[3.5rem] leading-tight font-extrabold tracking-tight text-on-surface">
+                        Fuel Your <span class="text-primary italic">Kinetic</span> Journey.
+                    </h1>
+<p class="text-on-surface-variant text-lg max-w-md font-medium">
+                        Log in to access your personalized learning dashboard and continue your discovery.
+                    </p>
+</div>
+<div class="relative group">
+<!-- Geometric Illustration -->
+<div class="absolute -inset-4 bg-primary-container/20 rounded-xl blur-2xl group-hover:bg-primary-container/30 transition-all duration-500"></div>
+<div class="relative overflow-hidden rounded-xl bg-surface-container shadow-[0_20px_40px_rgba(54,39,78,0.06)] aspect-[4/3] flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="abstract 3d composition with flowing purple ribbons and floating golden spheres representing dynamic energy and intellectual discovery in a clean studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRpJwmMO8Z58oHn5qKqtQRkW0RfgJFw9-Q7lv5x6bt40zLXSydHhPLsBTBE9N8KR5Gwv3l9vhOQz4SeZy7CoTNJkVXvgG2U9UiceIXquatHaSA_rTRlm7zwe1k1FNDcUmMXzvZZf1CVmx9ukPa0t5xDAFi96qQODcyWH205zL3Y6h_9xpZ1LuabE_7bJ50JEl_2GamK2Y6hZD4IHhjcXdXmyG2XTHbUEGmVjnh7WtrI0vpr1IDiOmFL9nMd5soQ8D8fXCuaA4y40"/>
+</div>
+</div>
+</div>
+<!-- Login Form Side -->
+<div class="w-full max-w-md mx-auto">
+<div class="bg-surface-container-lowest glass-panel p-10 md:p-12 rounded-xl shadow-[0_20px_40px_rgba(54,39,78,0.06),0_10px_15px_rgba(54,39,78,0.04)]">
+<div class="mb-8 lg:hidden">
+<div class="text-xl font-black text-[#5e2eef] tracking-tighter font-headline mb-2">Kinetic Academy</div>
+<h2 class="text-2xl font-headline font-bold text-on-surface">Sign In</h2>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label text-[0.75rem] font-bold text-on-surface-variant tracking-wider uppercase ml-1" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="mail">mail</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-highest transition-all duration-300 text-on-surface font-medium placeholder:text-outline" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="font-label text-[0.75rem] font-bold text-on-surface-variant tracking-wider uppercase ml-1" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="lock">lock</span>
+<input class="w-full pl-12 pr-12 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-highest transition-all duration-300 text-on-surface font-medium placeholder:text-outline" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Utilities -->
+<div class="flex items-center justify-between py-1">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/20 focus:ring-offset-0 transition-all cursor-pointer" type="checkbox"/>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Remember me</span>
+</label>
+<a class="text-sm font-bold text-primary hover:text-primary-dim transition-colors" href="#">Forgot password?</a>
+</div>
+<!-- Submit Button -->
+<button class="w-full main-gradient text-white font-headline font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 cubic-bezier(0.34,1.56,0.64,1)" type="submit">
+                            Log In
+                        </button>
+<!-- Divider -->
+<div class="relative flex items-center gap-4 py-4">
+<div class="flex-grow h-px bg-outline-variant/30"></div>
+<span class="text-[0.75rem] font-bold text-outline uppercase tracking-widest bg-transparent">Or continue with</span>
+<div class="flex-grow h-px bg-outline-variant/30"></div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-low rounded-lg font-bold text-on-surface hover:bg-surface-container-high transition-all duration-300" type="button">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPNF7TuXmZgkJ_VtY7UxN5XB3By74E5Bdevv_4_3PX-Ams24_0WYYp_it8tpfCpy6bvk-_bHxkYdWynD85FqyXyAtkFYUIEWtawVXgDI47BGd66C0-bGavowX4y0tQdYI6p0-DmW_0a1N_xjMjyI5XoLdc9ftHGNr6Q9JAhkn4bzVlOwBSf1NR7QIknlx2384oWVBkOnFQKwEcKkdaSm2lDomWz8uQsxqNaMAMHG4RWmqaQMutZ_tVCrVi8W9VYBNHMPKgkJ_OtFQ"/>
+<span>Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-low rounded-lg font-bold text-on-surface hover:bg-surface-container-high transition-all duration-300" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+<span>Apple</span>
+</button>
+</div>
+</form>
+<p class="mt-8 text-center text-on-surface-variant font-medium">
+                        Don't have an account? 
+                        <a class="text-primary font-bold hover:underline" href="#">Sign up for free</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-xl bg-[#f7edff] dark:bg-[#120f14] mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full max-w-7xl mx-auto">
+<div class="font-headline font-bold text-[#36274e] dark:text-[#fcf4ff] mb-4 md:mb-0">
+                Kinetic Academy
+            </div>
+<div class="flex flex-wrap justify-center gap-8 mb-4 md:mb-0">
+<a class="font-['Manrope'] text-sm tracking-wide text-[#36274e]/60 dark:text-[#fcf4ff]/60 hover:text-[#5e2eef] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-sm tracking-wide text-[#36274e]/60 dark:text-[#fcf4ff]/60 hover:text-[#5e2eef] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-sm tracking-wide text-[#36274e]/60 dark:text-[#fcf4ff]/60 hover:text-[#5e2eef] transition-colors" href="#">Help Center</a>
+</div>
+<div class="font-['Manrope'] text-sm tracking-wide text-[#36274e]/60 dark:text-[#fcf4ff]/60">
+                © 2024 Kinetic Academy. Kinetic Discovery.
+            </div>
+</div>
+</footer>
+</body></html>
