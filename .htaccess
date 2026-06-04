@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /PRX/
+    RewriteBase /
 
     # Serve public assets under /PRX/assets/*
     RewriteRule ^assets/(.*)$ public/assets/$1 [L,NC]

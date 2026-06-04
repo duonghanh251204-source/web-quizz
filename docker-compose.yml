@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prx_app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      # Đảm bảo vendor trong container không bị đè bởi vendor trống của máy host (nếu có)
+      - /var/www/html/vendor
+    env_file:
+      - .env
+    environment:
+      # Các biến này sẽ ghi đè lên file .env để đảm bảo chạy đúng trong Docker
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=prx
+      - DB_USERNAME=prx_user
+      - DB_PASSWORD=prx_password
+      - AI_SERVICE_URL=http://chatbot_ai:8000
+    depends_on:
+      - db
+      - chatbot_ai
+
+  chatbot_ai:
+    build:
+      context: ./CHATBOT-AI
+      dockerfile: Dockerfile
+    container_name: prx_chatbot_ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    # Gọi trực tiếp file .env của CHATBOT-AI để nạp cấu hình DeepSeek
+    env_file:
+      - ./CHATBOT-AI/.env
+
+  db:
+    image: mysql:8.0
+    container_name: prx_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: prx
+      MYSQL_USER: prx_user
+      MYSQL_PASSWORD: prx_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      # Tự động import file SQL khi database được khởi tạo lần đầu tiên
+      - ./database/prx.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
