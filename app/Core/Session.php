@@ -17,7 +17,7 @@ final class Session
     {
         if (session_status() === PHP_SESSION_NONE) {
             if (!is_dir($this->sessionPath)) {
-                mkdir($this->sessionPath, 0775, true);
+                @mkdir($this->sessionPath, 0775, true);
             }
 
             session_save_path($this->sessionPath);
