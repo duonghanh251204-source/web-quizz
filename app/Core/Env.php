@@ -28,8 +28,11 @@ final class Env
             $key = trim($key);
             $value = trim($value, " \t\n\r\0\x0B\"'");
 
-            $_ENV[$key] = $value;
-            putenv("{$key}={$value}");
+            // Chỉ gán giá trị từ file .env nếu biến đó chưa được hệ thống/Docker truyền vào
+            if (!isset($_ENV[$key]) && getenv($key) === false) {
+                $_ENV[$key] = $value;
+                putenv("{$key}={$value}");
+            }
         }
     }
 
