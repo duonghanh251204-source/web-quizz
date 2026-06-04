@@ -20,8 +20,13 @@ final class Session
                 @mkdir($this->sessionPath, 0775, true);
             }
 
-            session_save_path($this->sessionPath);
-            session_start();
+            // Chỉ đổi đường dẫn nếu thư mục tồn tại và có quyền ghi.
+            // Nếu không, PHP sẽ tự dùng thư mục tạm (tmp) mặc định của server.
+            if (is_dir($this->sessionPath) && is_writable($this->sessionPath)) {
+                session_save_path($this->sessionPath);
+            }
+            
+            @session_start();
         }
     }
 
