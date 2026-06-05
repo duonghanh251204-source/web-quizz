@@ -7,8 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: prx_app
     restart: unless-stopped
-    ports:
-      - "80:80"
+    # Đã đóng port 80 trực tiếp để bảo mật. Nginx sẽ đứng trước và proxy vào đây.
     volumes:
       - .:/var/www/html
       # Đảm bảo vendor trong container không bị đè bởi vendor trống của máy host (nếu có)
@@ -16,6 +15,10 @@ services:
     env_file:
       - .env
     environment:
+      # Tên miền cho nginx-proxy tự động nhận diện
+      - VIRTUAL_HOST=ten-mien-cua-ban.com,www.ten-mien-cua-ban.com
+      # Tên miền cho acme-companion tự động xin SSL
+      - LETSENCRYPT_HOST=ten-mien-cua-ban.com,www.ten-mien-cua-ban.com
       # Các biến này sẽ ghi đè lên file .env để đảm bảo chạy đúng trong Docker
       - DB_HOST=db
       - DB_PORT=3306
@@ -33,8 +36,7 @@ services:
       dockerfile: Dockerfile
     container_name: prx_chatbot_ai
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+    # Đã đóng port 8000 để bảo mật. Chỉ container app gọi được thông qua mạng nội bộ.
     # Gọi trực tiếp file .env của CHATBOT-AI để nạp cấu hình DeepSeek
     env_file:
       - ./CHATBOT-AI/.env
@@ -48,12 +50,44 @@ services:
       MYSQL_USER: prx_user
       MYSQL_PASSWORD: prx_password
       MYSQL_ROOT_PASSWORD: root_password
-    ports:
-      - "3306:3306"
+    # Đã đóng port 3306 để bảo mật. Chỉ ứng dụng nội bộ mới truy cập được.
     volumes:
       - db_data:/var/lib/mysql
       # Tự động import file SQL khi database được khởi tạo lần đầu tiên
       - ./database/prx.sql:/docker-entrypoint-initdb.d/init.sql
 
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:alpine
+    container_name: prx_nginx_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+    depends_on:
+      - app
+
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: prx_acme_companion
+    restart: unless-stopped
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+    environment:
+      # Thay email này bằng email thật của bạn để nhận thông báo gia hạn SSL
+      - DEFAULT_EMAIL=your_email@gmail.com
+
 volumes:
   db_data:
+  certs:
+  vhost:
+  html:
+  acme:
