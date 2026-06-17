@@ -557,6 +557,11 @@ final class QuizController extends Controller
                 ],
                 'correct_answer' => $correctAnswer,
                 'source' => $src,
+                'evidence_quote' => trim((string)($rawQuestion['evidence_quote'] ?? '')),
+                'reasoning' => trim((string)($rawQuestion['reasoning'] ?? '')),
+                'explanation' => trim((string)($rawQuestion['explanation'] ?? '')),
+                'confidence_score' => (int)($rawQuestion['confidence_score'] ?? 0),
+                'grounding_status' => trim((string)($rawQuestion['grounding_status'] ?? 'unknown')),
             ];
         }
 
@@ -798,6 +803,11 @@ final class QuizController extends Controller
             ],
             'correct_answer' => $correctAnswer,
             'source' => $src,
+            'evidence_quote' => trim((string)($question['evidence_quote'] ?? '')),
+            'reasoning' => trim((string)($question['reasoning'] ?? '')),
+            'explanation' => trim((string)($question['explanation'] ?? '')),
+            'confidence_score' => (int)($question['confidence_score'] ?? 0),
+            'grounding_status' => trim((string)($question['grounding_status'] ?? 'unknown')),
         ];
     }
 

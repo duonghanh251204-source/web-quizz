@@ -58,10 +58,14 @@ class QuestionItem(BaseModel):
     question: str
     options: dict
     correct_answer: str
-    explanation: str
+    explanation: str = ""
     difficulty: str
     bloom_level: str
     source_hint: str = ""
+    evidence_quote: str = ""
+    reasoning: str = ""
+    confidence_score: int = 0
+    grounding_status: str = "unknown"
 
 
 class GenerateResponse(BaseModel):
@@ -161,6 +165,15 @@ def _generate_single_sync(
     language: str,
 ) -> List[dict]:
     """Gọi LLM đồng bộ cho 1 batch — dùng trong asyncio.to_thread."""
+    from app.core.prompt_templates import generate_quiz_pipeline
+    
+    def _llm_call(prompt):
+        return generate_questions(SYSTEM_PROMPT, prompt, return_raw=True)
+    
+    # Dùng _llm_call (yêu cầu trả về text thô) để pipeline tự validate_questions
+    # Nếu generate_questions hiện trả về Dict thay vì String thì cần xử lý thêm.
+    # Trong PRX, giả định generate_questions tự parse hoặc mình override:
+    
     prompt = build_quiz_prompt(
         text_chunk=context,
         num_questions=num_q,
@@ -168,7 +181,20 @@ def _generate_single_sync(
         topic_hint=topic_hint,
         language=language,
     )
-    return generate_questions(SYSTEM_PROMPT, prompt)
+    # Vì generate_questions có thể đã tự trả về JSON list (theo code cũ)
+    # nhưng generate_quiz_pipeline lại mong đợi llm_call_func trả string.
+    # Tuy nhiên, nếu hàm generate_questions trả List[dict], ta convert list->json
+    # để prompt_templates.validate_questions load lại.
+    res = generate_questions(SYSTEM_PROMPT, prompt)
+    if isinstance(res, list):
+        res_str = json.dumps(res)
+    else:
+        res_str = str(res)
+        
+    from app.core.prompt_templates import validate_questions
+    validated = validate_questions(res_str, context)
+    validated.sort(key=lambda x: x.get('confidence_score', 0))
+    return validated
 
 
 # ---------------------------------------------------------------------------

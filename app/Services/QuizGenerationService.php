@@ -114,9 +114,20 @@ final class QuizGenerationService
             );
         }
 
-        $prompt = $this->promptBuilder->build($documentTitle, $preparedContent, $questionCount, $safeDifficulty);
-
         try {
+            if ($this->aiProvider instanceof \App\Services\AI\ChatbotAIServiceProvider) {
+                // Upload raw content directly without prompt wrappers
+                $sessionInfo = $this->aiProvider->uploadRawContent($preparedContent, $documentTitle . '.txt');
+                $prompt = json_encode([
+                    'session_id' => $sessionInfo['session_id'],
+                    'num_questions' => $questionCount,
+                    'difficulty' => $safeDifficulty,
+                    'language' => 'vi',
+                    'auto_review' => false,
+                ]);
+            } else {
+                $prompt = $this->promptBuilder->build($documentTitle, $preparedContent, $questionCount, $safeDifficulty);
+            }
             $result = $this->aiProvider->generate($prompt);
         } catch (\Throwable $throwable) {
             $this->logger->error('Loi sinh cau hoi AI', ['message' => $throwable->getMessage()]);
@@ -317,8 +328,18 @@ final class QuizGenerationService
                 'answers' => $normalizedAnswers,
                 'correct_answer' => $correct,
                 'source' => 'ai',
+                'evidence_quote' => trim((string)($item['evidence_quote'] ?? '')),
+                'reasoning' => trim((string)($item['reasoning'] ?? '')),
+                'explanation' => trim((string)($item['explanation'] ?? '')),
+                'confidence_score' => max(0, min(100, (int)($item['confidence_score'] ?? 0))),
+                'grounding_status' => (string)($item['grounding_status'] ?? 'unknown'),
             ];
         }
+
+        // Sort by confidence_score ASC
+        usort($result, function($a, $b) {
+            return $a['confidence_score'] <=> $b['confidence_score'];
+        });
 
         if ($result === []) {
             throw new ValidationException([

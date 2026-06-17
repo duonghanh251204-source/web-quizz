@@ -16,9 +16,9 @@ services:
       - .env
     environment:
       # Tên miền cho nginx-proxy tự động nhận diện
-      - VIRTUAL_HOST=ten-mien-cua-ban.com,www.ten-mien-cua-ban.com
+      - VIRTUAL_HOST=prxquizai.id.vn,www.prxquizai.id.vn
       # Tên miền cho acme-companion tự động xin SSL
-      - LETSENCRYPT_HOST=ten-mien-cua-ban.com,www.ten-mien-cua-ban.com
+      - LETSENCRYPT_HOST=prxquizai.id.vn,www.prxquizai.id.vn
       # Các biến này sẽ ghi đè lên file .env để đảm bảo chạy đúng trong Docker
       - DB_HOST=db
       - DB_PORT=3306
@@ -40,6 +40,19 @@ services:
     # Gọi trực tiếp file .env của CHATBOT-AI để nạp cấu hình DeepSeek
     env_file:
       - ./CHATBOT-AI/.env
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: prx_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      # Bạn có thể đổi sang tên miền nếu đã trỏ DNS (ví dụ: VIRTUAL_HOST=pma.prxquizai.id.vn)
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
   db:
     image: mysql:8.0
@@ -83,7 +96,7 @@ services:
       - acme:/etc/acme.sh
     environment:
       # Thay email này bằng email thật của bạn để nhận thông báo gia hạn SSL
-      - DEFAULT_EMAIL=your_email@gmail.com
+      - DEFAULT_EMAIL=duonghanh251204@gmail.com
 
 volumes:
   db_data:

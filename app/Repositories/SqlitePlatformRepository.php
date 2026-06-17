@@ -379,8 +379,8 @@ final class SqlitePlatformRepository implements PlatformRepositoryInterface
 
             $quizId = (int) $this->connection->lastInsertId();
             $questionStmt = $this->connection->prepare(
-                'INSERT INTO questions (quiz_id, position, question_content, answer_a, answer_b, answer_c, answer_d, correct_answer, source, created_at)
-                 VALUES (:quiz_id, :position, :question_content, :answer_a, :answer_b, :answer_c, :answer_d, :correct_answer, :source, :created_at)'
+                'INSERT INTO questions (quiz_id, position, question_content, answer_a, answer_b, answer_c, answer_d, correct_answer, evidence_quote, reasoning, explanation, confidence_score, grounding_status, source, created_at)
+                 VALUES (:quiz_id, :position, :question_content, :answer_a, :answer_b, :answer_c, :answer_d, :correct_answer, :evidence_quote, :reasoning, :explanation, :confidence_score, :grounding_status, :source, :created_at)'
             );
 
             foreach ($questions as $index => $question) {
@@ -403,6 +403,11 @@ final class SqlitePlatformRepository implements PlatformRepositoryInterface
                     ':answer_c' => (string) ($answers['C'] ?? ''),
                     ':answer_d' => (string) ($answers['D'] ?? ''),
                     ':correct_answer' => strtoupper((string) ($question['correct_answer'] ?? 'A')),
+                    ':evidence_quote' => (string) ($question['evidence_quote'] ?? ''),
+                    ':reasoning' => (string) ($question['reasoning'] ?? ''),
+                    ':explanation' => (string) ($question['explanation'] ?? ''),
+                    ':confidence_score' => (int) ($question['confidence_score'] ?? 0),
+                    ':grounding_status' => (string) ($question['grounding_status'] ?? 'unknown'),
                     ':source' => $src,
                     ':created_at' => (new DateTimeImmutable())->format('Y-m-d H:i:s'),
                 ]);

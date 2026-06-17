@@ -156,7 +156,11 @@ final class ChatbotAIServiceProvider implements AIProviderInterface
                     'D' => $options['D'] ?? '',
                 ],
                 'correct_answer' => in_array($correct, ['A', 'B', 'C', 'D'], true) ? $correct : 'A',
+                'evidence_quote' => $q['evidence_quote'] ?? $q['source_hint'] ?? '',
+                'reasoning' => $q['reasoning'] ?? '',
                 'explanation' => $q['explanation'] ?? '',
+                'confidence_score' => (int)($q['confidence_score'] ?? 0),
+                'grounding_status' => $q['grounding_status'] ?? 'unknown',
             ];
         }
         return $result;
@@ -240,6 +244,27 @@ final class ChatbotAIServiceProvider implements AIProviderInterface
 
         try {
             return $this->upload($tmpFile, 'document.txt');
+        } finally {
+            @unlink($tmpFile);
+        }
+    }
+
+    /**
+     * Tải lên nội dung thô (không có prompt wrapper)
+     *
+     * @return array{session_id: string, total_chunks: int, title: string}
+     * @throws AIProviderException
+     */
+    public function uploadRawContent(string $content, string $filename = 'document.txt'): array
+    {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'chatbot_ai_raw_') . '.txt';
+        $written = file_put_contents($tmpFile, $content);
+        if ($written === false) {
+            throw new AIProviderException('Không thể tạo temp file để upload lên CHATBOT-AI.');
+        }
+
+        try {
+            return $this->upload($tmpFile, $filename);
         } finally {
             @unlink($tmpFile);
         }

@@ -19,10 +19,12 @@ Ví dụ format JSON đúng (KHÔNG phải nội dung thực tế):
     "question": "[Câu hỏi dùng từ chính xác từ tài liệu]",
     "options": {"A": "[Từ tài liệu]", "B": "[Từ tài liệu]", "C": "[Từ tài liệu]", "D": "[Từ tài liệu]"},
     "correct_answer": "A",
-    "explanation": "[Giải thích + trích dẫn tài liệu chính xác]",
+    "explanation": "[Giải thích ngắn]",
     "difficulty": "medium",
     "bloom_level": "understand",
-    "source_hint": "[Copy nguyên câu từ tài liệu]"
+    "evidence_quote": "[Copy nguyên câu từ tài liệu]",
+    "reasoning": "[Tại sao câu này đúng?]",
+    "confidence_score": 95
   }
 ]
 
@@ -74,13 +76,41 @@ def preprocess_text_chunk(text_chunk: str) -> Tuple[str, str]:
 KHÔNG dùng kiến thức ngoài đoạn trên."""
     return grounded_text, summary
 
+def validate_evidence_quote(quote: str, source_text: str) -> str:
+    """Check if evidence quote exists in source text. Returns: verified, partial, missing."""
+    if not quote:
+        return "missing"
+    
+    q_norm = ' '.join(quote.lower().split())
+    s_norm = ' '.join(source_text.lower().split())
+    
+    if q_norm in s_norm:
+        return "verified"
+        
+    # fuzzy match
+    q_words = q_norm.split()
+    s_words = set(s_norm.split())
+    if not q_words:
+        return "missing"
+    valid_ratio = sum(1 for w in q_words if w in s_words) / len(q_words)
+    if valid_ratio >= 0.85:
+        return "partial"
+    return "missing"
+
 def validate_single_question(question: Dict, original_text: str) -> bool:
     """Hard validation: check từng từ có trong original text"""
+    # Validate evidence
+    evidence = question.get('evidence_quote', question.get('source_hint', ''))
+    status = validate_evidence_quote(evidence, original_text)
+    question['grounding_status'] = status
+    question['confidence_score'] = int(question.get('confidence_score', 0))
+    
     # Kết hợp tất cả text cần check
     texts_to_check = [
-        question['question'],
-        question['explanation']
-    ] + list(question['options'].values())
+        question.get('question', ''),
+        question.get('explanation', ''),
+        question.get('reasoning', '')
+    ] + list(question.get('options', {}).values())
     
     all_text = ' '.join(texts_to_check).lower()
     
@@ -88,9 +118,9 @@ def validate_single_question(question: Dict, original_text: str) -> bool:
     words = re.findall(r'\b[a-zA-ZÀ-ỹ]{3,}\b', all_text)
     original_words = set(re.findall(r'\b[a-zA-ZÀ-ỹ]{3,}\b', original_text.lower()))
     
-    # Cho phép 95% từ có trong original text
+    # Cho phép 80% từ có trong original text (do có thêm reasoning sẽ dùng từ bên ngoài 1 chút)
     valid_ratio = sum(1 for word in words if word in original_words) / len(words) if words else 0
-    return valid_ratio >= 0.95
+    return valid_ratio >= 0.80
 
 def validate_questions(questions_json: str, original_text: str) -> List[Dict]:
     """Final hard validation"""
@@ -167,10 +197,12 @@ Dựa vào TÀI LIỆU NGUYÊN BẢN trên, tạo {num_questions} câu trắc ng
     "question": "...",
     "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
     "correct_answer": "A",
-    "explanation": "[Giải thích + trích dẫn tài liệu]",
+    "explanation": "[Giải thích ngắn]",
     "difficulty": "{difficulty}",
     "bloom_level": "remember|understand|apply|analyze|evaluate|create",
-    "source_hint": "[Copy nguyên câu từ tài liệu]"
+    "evidence_quote": "[Copy nguyên câu từ tài liệu]",
+    "reasoning": "[Giải thích tại sao đáp án đúng]",
+    "confidence_score": 95
   }}
 ]
 
@@ -217,13 +249,12 @@ def generate_quiz_pipeline(
     text_chunk: str,
     num_questions: int = 5,
     difficulty: str = "medium",
-    max_retries: int = 2
+    max_retries: int = 1
 ) -> List[Dict]:
     """
-    Pipeline hoàn chỉnh 3 layers:
+    Pipeline hoàn chỉnh
     1. Generate với grounding
-    2. Strict review  
-    3. Hard validation
+    2. Review bị skip theo yêu cầu.
     """
     
     # Layer 1: Generate
@@ -231,19 +262,11 @@ def generate_quiz_pipeline(
     response1 = llm_call_func(prompt1)
     questions1 = validate_questions(response1, text_chunk)
     
-    if len(questions1) >= num_questions // 2:
-        return questions1
+    # Bỏ qua Critic Model (Layer 2 review) như yêu cầu của người dùng
     
-    # Layer 2: Review nếu cần
-    for retry in range(max_retries):
-        prompt2 = build_review_prompt(json.dumps(questions1), text_chunk)
-        response2 = llm_call_func(prompt2)
-        questions2 = validate_questions(response2, text_chunk)
-        
-        if len(questions2) > 0:
-            return questions2
+    # Sort theo confidence_score ASC (thấp lên trước)
+    questions1.sort(key=lambda x: x.get('confidence_score', 0))
     
-    # Fallback: return những gì có
     return questions1
 
 

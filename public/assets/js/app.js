@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
     const insertAtCursor = (textarea, text) => {
         if (!(textarea instanceof HTMLTextAreaElement)) return;
 
@@ -795,8 +795,11 @@
         const buildQuestionCard = (index) => {
             const article = document.createElement("article");
             article.className = "card ai-question-card";
-            article.setAttribute("data-preview-question", "");
-            article.setAttribute("data-source", "extract");
+            article.setAttribute("data-evidence-quote", "");
+            article.setAttribute("data-reasoning", "");
+            article.setAttribute("data-explanation", "");
+            article.setAttribute("data-confidence-score", "0");
+            article.setAttribute("data-grounding-status", "unknown");
 
             article.innerHTML = `
                 <div class="ai-question-head">
@@ -926,6 +929,11 @@
 
                     const sourceRaw = (card.getAttribute("data-source") || "extract").toLowerCase();
                     const source = ["ai", "extract", "manual"].includes(sourceRaw) ? sourceRaw : "extract";
+                    const evidenceQuote = card.getAttribute("data-evidence-quote") || "";
+                    const reasoning = card.getAttribute("data-reasoning") || "";
+                    const explanation = card.getAttribute("data-explanation") || "";
+                    const confidenceScore = parseInt(card.getAttribute("data-confidence-score") || "0", 10);
+                    const groundingStatus = card.getAttribute("data-grounding-status") || "unknown";
 
                     return {
                         question_content: questionTextarea.value || "",
@@ -937,6 +945,11 @@
                         },
                         correct_answer: correctAnswer,
                         source,
+                        evidence_quote: evidenceQuote,
+                        reasoning: reasoning,
+                        explanation: explanation,
+                        confidence_score: confidenceScore,
+                        grounding_status: groundingStatus,
                     };
                 })
                 .filter((item) => item !== null);
@@ -1025,6 +1038,52 @@
         activate(initial);
     };
 
+    const setupEvidenceHighlighting = () => {
+        const viewer = document.getElementById("document-viewer-content");
+        if (!viewer) return;
+
+        const originalHtml = viewer.innerHTML;
+
+        document.addEventListener("focusin", (e) => {
+            const target = e.target;
+            if (!(target instanceof HTMLElement)) return;
+
+            const card = target.closest("[data-preview-question]");
+            if (!card) return;
+
+            const quote = card.getAttribute("data-evidence-quote");
+            if (!quote || quote.trim() === "") {
+                viewer.innerHTML = originalHtml;
+                return;
+            }
+
+            const safeQuote = escapeHtmlPreview(quote);
+            
+            if (originalHtml.includes(safeQuote)) {
+                viewer.innerHTML = originalHtml.replace(
+                    safeQuote, 
+                    `<mark class="evidence-highlight" style="background-color: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: bold; box-shadow: 0 0 0 2px #eab308; transition: all 0.3s ease;">${safeQuote}</mark>`
+                );
+                
+                const mark = viewer.querySelector("mark.evidence-highlight");
+                if (mark) {
+                    const panel = viewer.closest(".preview-document-panel");
+                    if (panel) {
+                        const panelRect = panel.getBoundingClientRect();
+                        const markRect = mark.getBoundingClientRect();
+                        const offset = markRect.top - panelRect.top - (panelRect.height / 2) + (markRect.height / 2);
+                        panel.scrollTo({
+                            top: panel.scrollTop + offset,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            } else {
+                viewer.innerHTML = originalHtml;
+            }
+        });
+    };
+
     setupPreviewQuestionPayload();
     setupAiQuizGenerationLoading();
     setupFormSubmitLock();
@@ -1034,6 +1093,7 @@
     setupExamExperience();
     setupLandingJoinQuiz();
     setupQuizCreateTabs();
+    setupEvidenceHighlighting();
 
     const setupAdminUserFilter = () => {
         const input = document.querySelector("[data-admin-user-filter]");
